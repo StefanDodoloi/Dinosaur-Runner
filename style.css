@@ -1,0 +1,60 @@
+#game-container {
+    width: 1000px;
+    height: 500px;
+    border: 2px solid black;
+    position: relative;
+    margin: auto;
+}
+
+#dinosaur {
+    width: 100px;
+    height: 120px;
+    background-image: url("dino.jpg");
+    background-size: cover;
+    position: absolute;
+}
+
+.cactus {
+    width: 50px;
+    height: 80px;
+    background-image: url("cactus.jpg");
+    background-size: cover;
+    position: absolute;
+    top: 400px;
+    left: 90%;
+}
+
+#timer {
+    font-size: 20px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}  
+
+#score {
+    font-size: 20px;
+    position: absolute;
+    top: 40px;
+    left: 10px;
+}
+
+#gameOver {
+    font-size:30px;
+    text-align: center;
+    position: relative;
+    top: 100px;
+    color: red;
+}
+
+.jumping {
+    animation: jumpAnimation 1.5s ease;
+}
+
+@keyframes jumpAnimation {
+    0% { top: 380px; }
+    50% { top: 150px; }
+    100% { top: 380px; }
+}
+  
+  
+  
