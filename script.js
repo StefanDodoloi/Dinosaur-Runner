@@ -2,6 +2,7 @@ let dinosaur = document.getElementById('dinosaur');
 let gameOver = false;
 let totalSeconds = 0;
 let points = 0;
+let cactusSpeed = 10;
 
 const gameContainer = document.getElementById('game-container');
 const gameContainerWidth = parseInt(window.getComputedStyle(gameContainer).width);
@@ -21,7 +22,7 @@ function jump() {
         dinosaur.classList.add('jumping');
         setTimeout(() => {
             dinosaur.classList.remove('jumping');
-        }, 1500);
+        }, 1100);
     }
 }
 
@@ -35,8 +36,16 @@ function createCactus() {
     }
 }
 
+function createRandomInterval() {
+    return Math.random() * 2000 + 1000;
+}
+
+function createRandomCactus() {
+    createCactus();
+    setTimeout(createRandomCactus, createRandomInterval());
+}
+
 function moveCactus(cactus) {
-    const cactusSpeed = 10;
     const moveInterval = setInterval(() => {
         if(!gameOver) {
             const currentPosition = parseInt(window.getComputedStyle(cactus).left);
@@ -82,8 +91,8 @@ function timer() {
         if(seconds < 10)
             seconds = '0' + seconds;
         document.getElementById('timer').innerHTML = 'Time: ' + hour + ':' + minute + ':' + seconds;
-        if (totalSeconds % 3 === 0) {
-            createCactus();
+        if (totalSeconds % 10 === 0) {
+            ++cactusSpeed;
         }
     }
 }
@@ -96,6 +105,6 @@ function gameOverMessage() {
     document.getElementById('gameOver').innerHTML = 'Game Over!';
 }
 
-createCactus();
+createRandomCactus();
 setInterval(timer, 1000);
 score();

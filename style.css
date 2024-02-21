@@ -47,12 +47,12 @@
 }
 
 .jumping {
-    animation: jumpAnimation 1.5s ease;
+    animation: jumpAnimation 1.2s ease;
 }
 
 @keyframes jumpAnimation {
     0% { top: 380px; }
-    50% { top: 150px; }
+    50% { top: 190px; }
     100% { top: 380px; }
 }
   
