@@ -1,21 +1,33 @@
 let dinosaur = document.getElementById('dinosaur');
-let gameOver = false;
+let gameOver = true; 
 let totalSeconds = 0;
-let points = 0;
-let cactusSpeed = 10;
+let points, cactusSpeed;
 
 const gameContainer = document.getElementById('game-container');
 const gameContainerWidth = parseInt(window.getComputedStyle(gameContainer).width);
 const dinosaurWidth = parseInt(window.getComputedStyle(dinosaur).width);
+const newGameButton = document.getElementById('newGameButton');
 
 dinosaur.style.left = `${50}px`;
 dinosaur.style.top = `${380}px`;
 
+document.addEventListener('click', startGame);
 document.addEventListener('keydown', (event) => {
     if (event.key === ' ' || event.code === 'ArrowUp') {
         jump();
     }
 });
+
+function startGame() {
+    newGameButton.style.display = 'none';
+    gameOver = false;
+    totalSeconds = 0;
+    points = 0;
+    cactusSpeed = 10;
+    document.querySelectorAll('.cactus').forEach(cactus => cactus.remove());
+    document.getElementById('gameOver').innerHTML = '';
+    score();
+}
 
 function jump() {
     if (!dinosaur.classList.contains('jumping') && !gameOver) {
@@ -103,8 +115,8 @@ function score() {
 
 function gameOverMessage() {
     document.getElementById('gameOver').innerHTML = 'Game Over!';
+    newGameButton.style.display = 'block';
 }
 
 createRandomCactus();
 setInterval(timer, 1000);
-score();
